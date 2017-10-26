@@ -3,7 +3,6 @@ import { Link } from "react-router";
 
 export default class MainLayout extends Component {
   render() {
-
     return (
   <div>
           <nav className="navbar navbar-default">
@@ -18,11 +17,10 @@ export default class MainLayout extends Component {
         </ul>
       </div>
     </nav>
-
     <div className="container">
-         <main>{this.props.children}</main>
-    </div>
-    </div>
-    );
-  }
-}
+             <main>{this.props.children}</main>
+        </div>
+        </div>
+        );
+      }
+    }

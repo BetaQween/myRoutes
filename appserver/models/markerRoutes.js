@@ -9,7 +9,10 @@ var MarkerRoutes = mongoose.model("MarkerRoutes", {
     type : Array ,
     default : []
   }],
-
+  image: {
+    type: String,
+    default: "Unknown"
+  }
 });
 
 module.exports = { MarkerRoutes };

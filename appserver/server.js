@@ -127,7 +127,8 @@ app.delete("/destinationbyname/:name", (req, res) => {
 app.post("/markerRoutes", (req, res) => {
   var markerRoutes = new MarkerRoutes({
     name: req.body.name,
-    routes: req.body.routes
+    routes: req.body.routes,
+    image: req.body.image
   });
 
   markerRoutes.save().then(
@@ -149,6 +150,28 @@ app.get("/allroutes", (req, res) => {
     }
   );
 });
+app.delete("/markerRoutes/:id", (req, res) => {
+  var id = req.params.id;
+
+  if (!ObjectID.isValid(id)) {
+    return res.status(404).send();
+  }
+
+  MarkerRoutes.findById(id)
+    .then(des => {
+      if (!des) {
+        return res.status(404).send();
+      }
+
+      des.remove();
+      res.send(des.name + " was removed by ID");
+    })
+    .catch(e => {
+      res.status(400).send();
+    });
+});
+
+
 
 app.listen(port, () => {
   console.log(`Started up at port ${port}`);
